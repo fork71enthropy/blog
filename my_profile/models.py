@@ -15,13 +15,13 @@ class Profile(models.Model):
     
 class Author(models.Model):
     author_name = models.CharField(null=False, max_length=100)
-    bio_link = models.URLField(max_length=50, unique=True, null=True, blank=True)
+    bio_link = models.URLField(max_length=100, unique=True)
     def __str__(self):
         return f"Author {self.author_name}"
     
 class Project(models.Model):
     project_name = models.CharField(null=False, max_length=100)
-    github_link = models.URLField(max_length=50, unique=True, null=True, blank=True)
+    github_link = models.URLField(max_length=50, unique=True, null=False, blank=False)
     #Dans Project j'ajoute une clé étrangère parce que un Profile a 0 à n projects tandis qu'un project
     #est rataché à un et un seul profile
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='projects')
