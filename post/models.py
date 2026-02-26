@@ -7,11 +7,13 @@ from internaute.models import Internaute
 # We are waiting for 3 models, Category_Subject, Post_Article, Like_post
 
 class Category(models.Model):
-    subject_name = models.CharField(unique=True,null=False)
+    category_name = models.CharField(unique=True,null=False,max_length=100)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='category')
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 class Post(models.Model):
-    title_post = models.CharField(unique=True,null=False)
+    title_post = models.CharField(unique=True,null=False,max_length=100)
     date_post = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name='post')
     nb_like_post = models.IntegerField(default=0)

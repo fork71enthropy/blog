@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Problème réglé en 3 lignes
 class Internaute(AbstractUser):
-    abonne = models.BooleanField(null=False)
+    abonne = models.BooleanField(null=False,default=False)
 
 
 
