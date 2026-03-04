@@ -4,20 +4,25 @@ from internaute.models import Internaute
 
 
 # Create your models here.
-# We are waiting for 3 models, Category_Subject, Post_Article, Like_post
+# We are waiting for 3 models, Category_Subject, Post, Like_post
 
 class Category(models.Model):
     category_name = models.CharField(unique=True,null=False,max_length=100)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='category')
     class Meta:
         verbose_name_plural = 'Categories'
+    def __str__(self):
+        return self.category_name
 
 class Post(models.Model):
     title_post = models.CharField(unique=True,null=False,max_length=100)
     date_post = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name='post')
+    content_post = models.TextField()
     nb_like_post = models.IntegerField(default=0)
     nb_dislike_post = models.IntegerField(default=0)
+    def __str__(self):
+        return f"post {self.id}: {self.title_post} --- {self.date_post}"
 
 
 #Un internaute peut liker(resp disliker) un post max 1 fois, donc pas besoin d'avoir les deux attributs 
@@ -36,7 +41,3 @@ class Like_post(models.Model):
     class Meta:
         unique_together = ('internaute', 'post')
 
-# Je dois revenir sur cette classe Like_post, car je ne sais pas si elle est nécessaire ! 
-# Je pense devoir rajouter une ligne pour connecter Post et Internaute, vu qu'un post recois plusieurs likes
-# de divers internautes et un internaute peut liker plusieurs posts
-# update : mes 3 models le font déjà, tout est correcte, c'est bien modélisé
