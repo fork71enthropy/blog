@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
+
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
     <h1>{{ post.title_post }}</h1>
     <p>{{ post.date_post }}</p>
     <div>{{ post.content_post | safe }}</div>
-</body>
-</html>
+
+
+{% endblock %}
