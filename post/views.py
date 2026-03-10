@@ -12,4 +12,5 @@ def post_detail(request,pk):
 def acceuil(request):
     return render(request,'acceuil.html')
 
-
+def footer(request):
+    return render (request, 'footer.html')
