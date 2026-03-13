@@ -10,6 +10,6 @@ def post_detail(request,pk):
     return render(request, 'post_detail.html', {'post': post})
 
 def acceuil(request):
-    return render(request,'acceuil.html')
+    return render(request,'accueil.html')
 
 
