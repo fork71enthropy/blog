@@ -2,6 +2,12 @@
     {% load static %}
     {% block content %}
     
-    <p>Haha, je t'ai eu, difficile de me retrouver ! </p>
+    <ul>
+    {% for post in posts %}
+    
+        <li><h2><a href="{% url 'post_detail' post.pk %}">{{ post.title_post }}</a></h2></li>
+    
+    {% endfor %}
+    </ul>
 
     {% endblock %} 
