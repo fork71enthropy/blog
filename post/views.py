@@ -23,3 +23,17 @@ def allposts(request):
     return render(request, 'post/accueil.html', {'posts': posts})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

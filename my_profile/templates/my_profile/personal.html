@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <p> {{profile.bio_description}} </p>
+    <p> {{profile.content_rendered | safe}} </p>
 {% endblock %}
 
 
