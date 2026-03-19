@@ -44,11 +44,5 @@ class Like_post(models.Model):
         unique_together = ('internaute', 'post')
 
 
-send_mail(
-    "Apprentissage de la sécurité web automatisée",
-    f"Premier mail envoyé à l'utilisateur {Internaute.first_name}.",
-    f"{my_mail}",
-    [f"to@{Internaute.email}"],
-    fail_silently=False,
-)
+
 
