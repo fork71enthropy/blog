@@ -13,6 +13,7 @@ class Internaute(AbstractUser):
 
 
 
+
 '''
 class Internaute(models.Model):
     pseudo = models.TextField(null=False,unique=True)

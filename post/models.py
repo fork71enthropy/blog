@@ -1,10 +1,12 @@
 from django.db import models
 from my_profile.models import Profile
 from internaute.models import Internaute
+from django.core.mail import send_mail
 
 
 # Create your models here.
 # We are waiting for 3 models, Category_Subject, Post, Like_post
+my_mail = "julientelook@gmail.com"
 
 class Category(models.Model):
     category_name = models.CharField(unique=True,null=False,max_length=100)
@@ -40,4 +42,13 @@ class Like_post(models.Model):
 
     class Meta:
         unique_together = ('internaute', 'post')
+
+
+send_mail(
+    "Apprentissage de la sécurité web automatisée",
+    f"Premier mail envoyé à l'utilisateur {Internaute.first_name}.",
+    f"{my_mail}",
+    [f"to@{Internaute.email}"],
+    fail_silently=False,
+)
 
