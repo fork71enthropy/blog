@@ -8,7 +8,7 @@ import smtplib
 # Create your views here.
 
 def inscription(request):
-    my_mail = "julientelook@gmail.com"
+    my_mail = "noreply@opus-symmetry.fr"
     form = InscriptionForm() # affiche un formulaire vide lorsque arrive sur la page
     if request.method == 'POST':
         form = InscriptionForm(request.POST)
@@ -33,4 +33,6 @@ def inscription(request):
             return redirect('/')
     return render(request,'internaute/inscription.html',{'form':form})
 
+
+#pip freeze > requirements.txt pour update mon fichier 
 
