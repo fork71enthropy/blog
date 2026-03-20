@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from dotenv import load_dotenv 
 from pathlib import Path
-
+import os
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -128,4 +129,25 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Django : "oublie ton User par défaut, utilise mon modèle Internaute à la place"
 AUTH_USER_MODEL = 'internaute.Internaute'
+# Django : "c'est ici que tu dois envoyer les mails"
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#ANYMAIL = {
+#    'RESEND_API_KEY': 'ta_clé_api_ici',
+#}
+
+#DEFAULT_FROM_EMAIL = 'ton@email.com'
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# + les credentials SMTP (host, port, user, password)
+# On remplacera par cette ligne lorsqu'on passera en production 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.resend.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'resend'  # toujours "resend", pas ton email
+DEFAULT_FROM_EMAIL = 'noreply@opus-symmetry.fr'
+EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
