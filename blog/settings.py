@@ -26,8 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-
+ALLOWED_HOSTS = [
+    'web-production-e5b4ba.up.railway.app',
+    # or more flexibly:
+    '.railway.app',
+]
 # Application definition
 
 INSTALLED_APPS = [
