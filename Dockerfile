@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD exec gunicorn --bind 0.0.0.0:$PORT blog.wsgi:application
+CMD ["/bin/sh", "-c", "gunicorn blog.wsgi:application --bind 0.0.0.0:${PORT:-8000}"]
