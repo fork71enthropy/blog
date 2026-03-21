@@ -7,7 +7,7 @@ import markdown
 def render_markdown(content):
     return markdown.markdown(
         content,
-        extensions=['fenced_code', 'codehilite']
+        extensions=['fenced_code', 'codehilite','tables']
     )
 
 def post_detail(request, pk):
