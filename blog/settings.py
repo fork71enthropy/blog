@@ -31,6 +31,8 @@ ALLOWED_HOSTS = [
     # or more flexibly:
     '.railway.app',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-e5b4ba.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
