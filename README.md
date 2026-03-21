@@ -18,3 +18,6 @@ Playwright — pour piloter le navigateur et récupérer le HTML rendu
 BeautifulSoup — pour parser ce HTML et extraire les offres
 Python — pour filtrer et afficher les résultats
 ```
+```bash
+pip freeze > requirements.txt
+```
