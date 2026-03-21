@@ -28,8 +28,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-
+ALLOWED_HOSTS = [
+    'web-production-56b64.up.railway.app',
+    'opus-symmetry.fr',
+    'www.opus-symmetry.fr',
+]
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-e5b4ba.up.railway.app',
     'https://opus-symmetry.fr',
