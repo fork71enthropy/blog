@@ -33,6 +33,9 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://web-production-e5b4ba.up.railway.app']
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#python manage.py collectstatic --noinput && python manage.py migrate
 # Application definition
 
 INSTALLED_APPS = [
@@ -60,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+#python manage.py collectstatic --noinput && gunicorn blog.wsgi
 ROOT_URLCONF = 'blog.urls'
 
 TEMPLATES = [
