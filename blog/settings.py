@@ -178,3 +178,7 @@ SITE_URL = "https://opus-symmetry.fr"
 
 #CMD exec gunicorn blog.wsgi:application --bind 0.0.0.0:$PORT
 # commande docker, l'ancienne
+
+#commande pour tester un nom de domaine
+#dig opus-symmetry.fr @213.186.33.99
+#nslookup opus-symmetry.fr
