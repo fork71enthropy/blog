@@ -176,6 +176,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
 # settings.py
 SITE_URL = "https://opus-symmetry.fr"
 
+
 #CMD exec gunicorn blog.wsgi:application --bind 0.0.0.0:$PORT
 # commande docker, l'ancienne
 
