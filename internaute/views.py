@@ -38,5 +38,8 @@ def inscription(request):
 
 def ajout_commentaire(request):
     # à remplir, sans oublier les unit tests
+    form = InscriptionForm() # affiche un formulaire vide lorsque arrive sur la page
+
+    return render(request,'internaute/inscription.html',{'form':form})
 
 
