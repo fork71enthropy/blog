@@ -37,6 +37,16 @@ def inscription(request):
 #pip freeze > requirements.txt pour update mon fichier 
 
 
+#exemple à modifier bien sûr ! 
+def ajouter_commentaire(request):
+    form = CommentForm()
 
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')  # redirection après envoi
+
+    return render(request, 'commentaire.html', {'form': form})
 
 
