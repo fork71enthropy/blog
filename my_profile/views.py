@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Profile
+from .models import Profile,Book,Project
 from post.views import render_markdown
 
 # Create your views here.
@@ -9,9 +9,13 @@ def my_profile_presentation(request):
     return render(request,'my_profile/personal.html',{'profile':profile})
 
 
+def allbooks(request):
+    books = Book.objects.all()
+    return render(request, 'my_profile/books.html', {'books': books})
 
-
-
+def allprojects(request):
+    projects = Project.objects.all()
+    return render(request,'my_profile/projects.html',{'projects':projects})
 
 
 
