@@ -21,10 +21,13 @@ class Author(models.Model):
     
 class Project(models.Model):
     project_name = models.CharField(null=False, max_length=100)
-    github_link = models.URLField(max_length=50, unique=True, null=False, blank=False)
+    github_link = models.URLField(max_length=150, unique=True, null=False, blank=False)
+    live_url = models.URLField(max_length=200, null=True, blank=True)
     #Dans Project j'ajoute une clé étrangère parce que un Profile a 0 à n projects tandis qu'un project
     #est rataché à un et un seul profile
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='projects')
+    def __str__(self):
+        return f"Project {self.project_name}"
 
 class Book(models.Model):
     title_book = models.CharField(null=False, max_length=200)
