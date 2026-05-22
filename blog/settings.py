@@ -25,18 +25,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-
+#DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = 'True'
 
 ALLOWED_HOSTS = [
     'web-production-56b64.up.railway.app',
     'opus-symmetry.fr',
     'www.opus-symmetry.fr',
+    '127.0.0.1',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-e5b4ba.up.railway.app',
     'https://opus-symmetry.fr',
     'https://www.opus-symmetry.fr',
+
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
