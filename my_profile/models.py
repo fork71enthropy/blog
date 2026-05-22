@@ -17,13 +17,13 @@ class Author(models.Model):
     author_name = models.CharField(null=False, max_length=100)
     bio_link = models.URLField(max_length=100, unique=True)
     def __str__(self):
-        return f"Author {self.author_name}"
+        return f"Author: {self.author_name}"
     
 class Project(models.Model):
     project_name = models.CharField(null=False, max_length=100)
     github_link = models.URLField(max_length=150, unique=True, null=False, blank=False)
     def __str__(self):
-        return f"Project {self.project_name}"
+        return f"{self.project_name}"
 
 class Book(models.Model):
     title_book = models.CharField(null=False, max_length=200)
@@ -32,7 +32,7 @@ class Book(models.Model):
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='books')
     authors = models.ManyToManyField(Author, related_name='books')
     def __str__(self):
-        return f"Book {self.title_book}"
+        return f"{self.title_book}"
 
     
 
