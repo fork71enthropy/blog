@@ -5,7 +5,7 @@
     <div class="book">
         <h3>{{ book.title_book }}</h3>
         <p>{% for author in book.authors.all %}{{ author.author_name }}{% endfor %}</p>
-        <a href="{{ book.filename_path }}" target="_blank">Voir le livre</a>
+        <a href="{{ book.filename_path }}" target="_blank">See the book</a>
     </div>
     {% endfor %}
 {% endblock %}
