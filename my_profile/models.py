@@ -31,6 +31,8 @@ class Book(models.Model):
     filename_path = models.CharField(max_length=100,unique=True)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,related_name='books')
     authors = models.ManyToManyField(Author, related_name='books')
+    def __str__(self):
+        return f"Book {self.title_book}"
 
     
 
