@@ -6,3 +6,4 @@ admin.site.register(Profile)
 admin.site.register(Author)
 admin.site.register(Project)
 admin.site.register(Book)
+
