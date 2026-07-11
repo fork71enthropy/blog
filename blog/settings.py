@@ -59,8 +59,9 @@ INSTALLED_APPS = [
     'my_profile',
     'post',
     'comment',
-    'api'
+    'api',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

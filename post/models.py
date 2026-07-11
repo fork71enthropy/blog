@@ -26,7 +26,7 @@ class Post(models.Model):
 
 
 #Un internaute peut liker(resp disliker) un post max 1 fois, donc pas besoin d'avoir les deux attributs 
-#nb_like_post et nb_dislike_post, il faut les mettre directement dans post.
+#nb_like_post et nb_dislike_post, il faut les mettre directement dans post. Update : Pourquoi ? 
 # Je dois quand même savoir qui a liké quoi, c'est pourquoi je garde Like_post avec les deux ids
 class Like_post(models.Model):
     internaute = models.ForeignKey(Internaute,on_delete=models.CASCADE,related_name='likes_donnes')
