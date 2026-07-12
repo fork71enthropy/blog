@@ -1,5 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Post,Like_post
+from django.shortcuts import render, get_object_or_404,redirect 
 import markdown
 from django.contrib.auth.decorators import login_required
 from comment.forms import CommentForm
