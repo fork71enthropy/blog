@@ -2,6 +2,15 @@
 {% block content %}
 <div style="max-width: 500px; margin: 60px auto;">
     <h2>Se connecter</h2>
+
+    {% if form.non_field_errors %}
+        <div style="color: red; margin-bottom: 16px;">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
