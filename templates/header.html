@@ -7,13 +7,21 @@
     <div class="header-inner">
       <a class="logo" href="/">devlog<span>.py</span></a>
       <nav>
-        <a href="/">Articles</a>
-        <a href="/my_profile">About</a>
-        <a href="https://github.com/fork71enthropy/blog" target="_blank">GitHub</a>
-        <a href="/my_profile/projects">Projects</a>
-        <a href="/my_profile/books">Books</a>
-        <a href="/internaute">Subscribe</a>
-
+          <a href="/">Articles</a>
+          <a href="/my_profile">About</a>
+          <a href="https://github.com/fork71enthropy/blog" target="_blank">GitHub</a>
+          <a href="/my_profile/projects">Projects</a>
+          <a href="/my_profile/books">Books</a>
+          {% if user.is_authenticated %}
+              <span>{{ user.username }}</span>
+              <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit">Déconnexion</button>
+              </form>
+          {% else %}
+              <a href="{% url 'login' %}">Connexion</a>
+              <a href="/internaute">Subscribe</a>
+          {% endif %}
       </nav>
     </div>
   </header>

@@ -1,35 +1,49 @@
 {% extends "base.html" %}
-
-
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title_post }}{% endblock %}
 {% block content %}
     <h1>{{ post.title_post }}</h1>
     <p>{{ post.date_post }}</p>
     <div>{{ post.content_rendered | safe }}</div>
 
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'toggle_post_like' post.pk %}">
+            {% csrf_token %}
+            <button type="submit">
+                {% if user_has_liked %}Unlike{% else %}Like{% endif %} ({{ post.nb_like_post }})
+            </button>
+        </form>
+    {% else %}
+        <p>{{ post.nb_like_post }} likes — <a href="{% url 'login' %}">connecte-toi</a> pour liker.</p>
+    {% endif %}
 
+    <h3>Commentaires ({{ post.comment.count }})</h3>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_comment' post.pk %}">
+            {% csrf_token %}
+            {{ comment_form }}
+            <button type="submit">Commenter</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Connecte-toi</a> pour commenter.</p>
+    {% endif %}
+
+    {% for comment in post.comment.all %}
+        <div style="margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px;">
+            <strong>{{ comment.internaute.username }}</strong> — {{ comment.comment_date }}
+            <p>{{ comment.text }}</p>
+
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'toggle_comment_like' comment.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">
+                        {% if comment.pk in liked_comment_ids %}♥ Unlike{% else %}♡ Like{% endif %}
+                        ({{ comment.nb_like_com }})
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>Aucun commentaire pour l'instant.</p>
+    {% endfor %}
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
