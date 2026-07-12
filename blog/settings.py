@@ -68,6 +68,9 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # fallback : garde le login par username pour /admin/
 ]
 
+LOGIN_REDIRECT_URL = 'allposts'
+LOGOUT_REDIRECT_URL = 'allposts'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
