@@ -4,9 +4,10 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 # We are waiting for 1 model, Internaute
 
-# Problème réglé en 3 lignes
+# Problème réglé en 3 lignes, car AbstractUser gère déjà toutes les fields que je voulais réécrire dans Internaute
 class Internaute(AbstractUser):
     abonne = models.BooleanField(null=False,default=False)
+    email = models.EmailField(unique=True)
 
 
 

@@ -63,6 +63,11 @@ INSTALLED_APPS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = [
+    'internaute.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',  # fallback : garde le login par username pour /admin/
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
