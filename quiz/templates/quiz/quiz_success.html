@@ -1,3 +1,10 @@
-<h2>🎉 Bravo, tu as réussi le quiz !</h2>
-<p>Ton score : {{ score }} / {{ total }}</p>
-<p>Abonne-toi pour ne rien manquer, et laisse un commentaire 👇</p>
+{% load static %}
+<link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
+<script>document.body.classList.add('quiz-theme');</script>
+
+<div class="qz-card result-wrapper success">
+    <div class="result-icon">🎉</div>
+    <p class="result-title">Bravo, tu as réussi le quiz !</p>
+    <p class="result-score">{{ score }} / {{ total }}</p>
+    <p class="result-cta">Abonne-toi pour ne rien manquer, et laisse un commentaire 👇</p>
+</div>

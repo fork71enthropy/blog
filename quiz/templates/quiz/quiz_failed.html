@@ -1,2 +1,10 @@
-<h2>Score : {{ score }} / {{ quiz.questions.count }}</h2>
-<p>Pas encore, relis l'article pour mieux comprendre le sujet.</p>
+{% load static %}
+<link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
+<script>document.body.classList.add('quiz-theme');</script>
+
+<div class="qz-card result-wrapper failed">
+    <div class="result-icon">📚</div>
+    <p class="result-title">Pas encore tout à fait !</p>
+    <p class="result-score">{{ score }} / {{ quiz.questions.count }}</p>
+    <p class="result-cta">Relis l'article pour mieux comprendre le sujet, puis retente le quiz.</p>
+</div>

@@ -1,176 +1,21 @@
-<style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
 
-body {
-    background: #0D1117 !important;
-    margin: 0;
-    min-height: 100vh;
-}
+<script>document.body.classList.add('quiz-theme');</script>
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap');
-
-.quiz-wrapper {
-    background: #0D1117;
-    color: #E6EDF3;
-    font-family: 'Inter', system-ui, sans-serif;
-    max-width: 640px;
-    margin: 40px auto;
-    padding: 32px;
-    border-radius: 12px;
-    border: 1px solid #30363D;
-}
-
-.quiz-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #8B949E;
-    margin-bottom: 24px;
-    line-height: 1.4;
-}
-
-.quiz-meta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: #8B949E;
-}
-
-#timer {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    color: #F0B429;
-}
-
-#timer.warning {
-    color: #F85149;
-}
-
-.progress-rail {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 32px;
-}
-
-.progress-segment {
-    flex: 1;
-    height: 4px;
-    border-radius: 2px;
-    background: #30363D;
-    transition: background 0.3s ease;
-}
-
-.progress-segment.current { background: #F0B429; }
-.progress-segment.correct { background: #3FB950; }
-.progress-segment.incorrect { background: #F85149; }
-
-.quiz-question p strong {
-    display: block;
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.quiz-question label {
-    display: block;
-    background: #161B22;
-    border: 1px solid #30363D;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.quiz-question label:hover {
-    border-color: #F0B429;
-}
-
-.quiz-question input[type="radio"] {
-    accent-color: #F0B429;
-    margin-right: 10px;
-}
-
-.quiz-question input[type="radio"]:focus-visible {
-    outline: 2px solid #58A6FF;
-    outline-offset: 2px;
-}
-
-.feedback {
-    margin-top: 16px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-}
-
-.feedback.correct-fb {
-    background: rgba(63, 185, 80, 0.12);
-    color: #3FB950;
-}
-
-.feedback.incorrect-fb {
-    background: rgba(248, 81, 73, 0.12);
-    color: #F85149;
-}
-
-.quiz-nav {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.quiz-nav button {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: 1px solid #30363D;
-    background: transparent;
-    color: #E6EDF3;
-    cursor: pointer;
-    transition: background 0.15s ease;
-}
-
-#next-btn, #submit-btn {
-    background: #F0B429;
-    color: #0D1117;
-    border-color: #F0B429;
-}
-
-.quiz-nav button:hover {
-    opacity: 0.9;
-}
-
-.quiz-nav button:focus-visible {
-    outline: 2px solid #58A6FF;
-    outline-offset: 2px;
-}
-
-@media (max-width: 600px) {
-    .quiz-wrapper { margin: 0; border-radius: 0; border: none; padding: 20px; }
-}
-</style>
-
-<div class="quiz-wrapper">
+<div class="qz-card quiz-wrapper">
     <p class="quiz-title">{{ quiz.post }}</p>
-
     <form method="post" id="quiz-form">
         {% csrf_token %}
-
         <div class="quiz-meta-row">
             <span id="question-counter"></span>
             <span id="timer"></span>
         </div>
-
         <div class="progress-rail" id="progress-rail">
             {% for question in quiz.questions.all %}
                 <div class="progress-segment" data-index="{{ forloop.counter0 }}"></div>
             {% endfor %}
         </div>
-
         {% for question in quiz.questions.all %}
             <div class="quiz-question" data-index="{{ forloop.counter0 }}" {% if not forloop.first %}style="display:none;"{% endif %}>
                 <p><strong>{{ question.text }}</strong></p>
@@ -183,7 +28,6 @@ body {
                 <p class="feedback" style="display:none;"></p>
             </div>
         {% endfor %}
-
         <div class="quiz-nav">
             <button type="button" id="prev-btn" style="display:none;">← Précédent</button>
             <button type="button" id="next-btn">Suivant →</button>
@@ -240,15 +84,22 @@ function handleTimeout() {
     currentQuestion.style.opacity = "0.7";
     feedbackShown = true;
     updateSegments(current, "incorrect");
-    nextBtn.textContent = current === questions.length - 1 ? "Voir le résultat" : "Question suivante";
+
+    if (current === questions.length - 1) {
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "inline-block";
+    } else {
+        nextBtn.textContent = "Question suivante";
+    }
     timerEl.textContent = "⏱ 0s";
 }
 
 function showQuestion(index) {
     questions.forEach((q, i) => q.style.display = i === index ? "block" : "none");
     prevBtn.style.display = index === 0 ? "none" : "inline-block";
-    nextBtn.style.display = index === questions.length - 1 ? "none" : "inline-block";
-    submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
+    nextBtn.style.display = "inline-block";
+    nextBtn.textContent = "Suivant →";
+    submitBtn.style.display = "none";
     counter.textContent = `Question ${index + 1} / ${questions.length}`;
     feedbackShown = false;
     updateSegments(index, "current");
@@ -275,13 +126,18 @@ nextBtn.addEventListener("click", () => {
         currentQuestion.style.opacity = "0.7";
         feedbackShown = true;
         updateSegments(current, isCorrect ? "correct" : "incorrect");
-        nextBtn.textContent = current === questions.length - 1 ? "Voir le résultat" : "Question suivante";
+
+        if (current === questions.length - 1) {
+            nextBtn.style.display = "none";
+            submitBtn.style.display = "inline-block";
+        } else {
+            nextBtn.textContent = "Question suivante";
+        }
         return;
     }
 
     current++;
     showQuestion(current);
-    nextBtn.textContent = "Suivant →";
 });
 
 prevBtn.addEventListener("click", () => {
