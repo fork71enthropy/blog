@@ -130,3 +130,17 @@ body.quiz-theme {
 .result-wrapper.success .result-score { color: var(--qz-accent); }
 .result-wrapper.failed .result-score { color: var(--qz-incorrect); }
 .result-cta { color: var(--qz-text-dim); font-size: 0.95rem; line-height: 1.6; }
+
+
+.result-link {
+    display: inline-block;
+    margin-top: 24px;
+    color: var(--qz-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.result-link:hover {
+    text-decoration: underline;
+}

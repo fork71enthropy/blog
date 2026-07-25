@@ -7,4 +7,5 @@
     <p class="result-title">Pas encore tout à fait !</p>
     <p class="result-score">{{ score }} / {{ quiz.questions.count }}</p>
     <p class="result-cta">Relis l'article pour mieux comprendre le sujet, puis retente le quiz.</p>
+    <a href="{% url 'post_detail' quiz.post.pk %}" class="result-link">← Retour à l'article</a>
 </div>

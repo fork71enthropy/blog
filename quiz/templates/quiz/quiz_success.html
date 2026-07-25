@@ -7,4 +7,5 @@
     <p class="result-title">Bravo, tu as réussi le quiz !</p>
     <p class="result-score">{{ score }} / {{ total }}</p>
     <p class="result-cta">Abonne-toi pour ne rien manquer, et laisse un commentaire 👇</p>
+    <a href="{% url 'post_detail' quiz.post.pk %}" class="result-link">← Retour à l'article</a>
 </div>
