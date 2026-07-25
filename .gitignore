@@ -4,3 +4,5 @@ burpsuite_community_linux_v2026_2_3.sh
 __pycache__/
 db.sqlite3
 staticfiles/
+data_backup.json
+db.sqlite3*
