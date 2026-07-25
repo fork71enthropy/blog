@@ -1,0 +1,13 @@
+<h2>Tous les quiz disponibles</h2>
+
+{% if quizzes %}
+    <ul>
+        {% for quiz in quizzes %}
+            <li>
+                <a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.post }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun quiz disponible pour le moment.</p>
+{% endif %}

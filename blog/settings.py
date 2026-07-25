@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'post',
     'comment',
     'api',
+    'quiz',
 ]
 
 

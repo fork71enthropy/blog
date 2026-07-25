@@ -12,6 +12,7 @@
           <a href="https://github.com/fork71enthropy/blog" target="_blank">GitHub</a>
           <a href="/my_profile/projects">Projects</a>
           <a href="/my_profile/books">Books</a>
+          <a href="/quiz">QUIZ</a>
           {% if user.is_authenticated %}
               <span>{{ user.username }}</span>
               <form method="post" action="{% url 'logout' %}" style="display:inline;">

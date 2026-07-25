@@ -23,4 +23,5 @@ urlpatterns = [
     path('my_profile/',include('my_profile.urls')),
     path('internaute/',include('internaute.urls')),
     path('comment/',include('comment.urls')),
+    path('quiz/', include('quiz.urls')),
 ]

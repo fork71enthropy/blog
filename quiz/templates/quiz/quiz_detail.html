@@ -1,0 +1,119 @@
+<h2>{{ quiz.post }}</h2>
+
+<form method="post" id="quiz-form">
+    {% csrf_token %}
+
+    <p id="question-counter"></p>
+    <p id="timer" style="font-weight:bold;"></p>
+
+    {% for question in quiz.questions.all %}
+<div class="quiz-question" data-index="{{ forloop.counter0 }}" {% if not forloop.first %}style="display:none;"{% endif %}>
+<p><strong>{{ question.text }}</strong></p>
+            {% for choice in question.choices.all %}
+<label>
+<input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" data-correct="{{ choice.is_correct|yesno:'true,false' }}" required>
+                    {{ choice.text }}
+</label><br>
+            {% endfor %}
+<p class="feedback" style="display:none; font-weight:bold;"></p>
+</div>
+    {% endfor %}
+
+<button type="button" id="prev-btn" style="display:none;">Précédent</button>
+<button type="button" id="next-btn">Suivant</button>
+<button type="submit" id="submit-btn" style="display:none;">Valider</button>
+</form>
+
+<script>
+const questions = document.querySelectorAll(".quiz-question");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const submitBtn = document.getElementById("submit-btn");
+const counter = document.getElementById("question-counter");
+const timerEl = document.getElementById("timer");
+let current = 0;
+let feedbackShown = false;
+let timeLeft = 30;
+let timerInterval = null;
+
+function startTimer() {
+clearInterval(timerInterval);
+timeLeft = 30;
+timerEl.textContent = `⏱ ${timeLeft}s`;
+timerEl.style.color = "black";
+
+timerInterval = setInterval(() => {
+timeLeft--;
+timerEl.textContent = `⏱ ${timeLeft}s`;
+if (timeLeft <= 10) timerEl.style.color = "red";
+
+if (timeLeft <= 0) {
+clearInterval(timerInterval);
+handleTimeout();
+        }
+    }, 1000);
+}
+
+function handleTimeout() {
+if (feedbackShown) return;
+const currentQuestion = questions[current];
+const feedback = currentQuestion.querySelector(".feedback");
+const inputs = currentQuestion.querySelectorAll("input[type=radio]");
+
+feedback.textContent = "⏰ Temps écoulé !";
+feedback.style.color = "red";
+feedback.style.display = "block";
+currentQuestion.querySelectorAll("label").forEach(label => label.style.pointerEvents = "none");
+currentQuestion.style.opacity = "0.7";
+feedbackShown = true;
+nextBtn.textContent = current === questions.length - 2 ? "Voir le résultat" : "Question suivante";
+timerEl.textContent = "⏱ 0s";
+}
+
+function showQuestion(index) {
+questions.forEach((q, i) => q.style.display = i === index ? "block" : "none");
+prevBtn.style.display = index === 0 ? "none" : "inline-block";
+nextBtn.style.display = index === questions.length - 1 ? "none" : "inline-block";
+submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
+counter.textContent = `Question ${index + 1} / ${questions.length}`;
+feedbackShown = false;
+startTimer();
+    }
+
+nextBtn.addEventListener("click", () => {
+const currentQuestion = questions[current];
+const currentInputs = currentQuestion.querySelectorAll("input[type=radio]");
+const feedback = currentQuestion.querySelector(".feedback");
+const selected = Array.from(currentInputs).find(input => input.checked);
+
+if (!feedbackShown) {
+if (!selected) {
+alert("Merci de répondre avant de continuer.");
+return;
+            }
+clearInterval(timerInterval);
+const isCorrect = selected.dataset.correct === "true";
+feedback.textContent = isCorrect ? "✅ Bonne réponse !" : "❌ Mauvaise réponse.";
+feedback.style.color = isCorrect ? "green" : "red";
+feedback.style.display = "block";
+currentQuestion.querySelectorAll("label").forEach(label => label.style.pointerEvents = "none");
+currentQuestion.style.opacity = "0.7";
+feedbackShown = true;
+nextBtn.textContent = current === questions.length - 1 ? "Voir le résultat" : "Question suivante";
+
+return;
+        }
+
+current++;
+showQuestion(current);
+nextBtn.textContent = "Suivant";
+    });
+
+prevBtn.addEventListener("click", () => {
+clearInterval(timerInterval);
+current--;
+showQuestion(current);
+    });
+
+showQuestion(current);
+</script>
