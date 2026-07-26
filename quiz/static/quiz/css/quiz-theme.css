@@ -37,50 +37,6 @@ body.quiz-theme {
     background: var(--qz-surface);
 }
 
-@media (max-width: 600px) {
-  .qz-card { margin: 0; border-radius: 0; border: none; padding: 20px; }
-
-  /* Typographie plus lisible sur mobile */
-  .quiz-title { font-size: 1.3rem; margin-bottom: 20px; }
-  .quiz-question p strong { font-size: 1.3rem; margin-bottom: 24px; }
-  .quiz-meta-row { font-size: 0.95rem; }
-  #timer { font-size: 1rem; }
-
-  /* Barre de progression plus visible */
-  .progress-rail { gap: 6px; margin-bottom: 28px; }
-  .progress-segment { height: 6px; }
-
-  /* Zones tactiles plus généreuses pour les réponses */
-  .quiz-question label {
-    padding: 18px 20px;
-    font-size: 1.05rem;
-    margin-bottom: 14px;
-    line-height: 1.4;
-  }
-  .quiz-question input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 14px;
-  }
-
-  /* Boutons pleine largeur, plus faciles à toucher */
-  .quiz-nav { flex-direction: column; gap: 10px; }
-  .quiz-nav button {
-    width: 100%;
-    padding: 16px 20px;
-    font-size: 1.05rem;
-  }
-
-  /* Feedback plus lisible */
-  .feedback { font-size: 1.05rem; padding: 14px 18px; }
-
-  /* Résultats plus impactants */
-  .result-wrapper { padding: 32px 20px; }
-  .result-icon { font-size: 3rem; }
-  .result-title { font-size: 1.5rem; }
-  .result-score { font-size: 2.2rem; }
-  .result-cta { font-size: 1rem; }
-}
 
 /* --- Liste des quiz --- */
 .quizzes-heading {
@@ -184,4 +140,50 @@ body.quiz-theme {
 
 .result-link:hover {
     text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+  .qz-card { margin: 0; border-radius: 0; border: none; padding: 20px; }
+
+  /* Typographie plus lisible sur mobile */
+  .quiz-title { font-size: 1.3rem; margin-bottom: 20px; }
+  .quiz-question p strong { font-size: 1.3rem; margin-bottom: 24px; }
+  .quiz-meta-row { font-size: 0.95rem; }
+  #timer { font-size: 1rem; }
+
+  /* Barre de progression plus visible */
+  .progress-rail { gap: 6px; margin-bottom: 28px; }
+  .progress-segment { height: 6px; }
+
+  /* Zones tactiles plus généreuses pour les réponses */
+  .quiz-question label {
+    padding: 18px 20px;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .quiz-question input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+  }
+
+  /* Boutons pleine largeur, plus faciles à toucher */
+  .quiz-nav { flex-direction: column; gap: 10px; }
+  .quiz-nav button {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 1.05rem;
+  }
+
+  /* Feedback plus lisible */
+  .feedback { font-size: 1.05rem; padding: 14px 18px; }
+
+  /* Résultats plus impactants */
+  .result-wrapper { padding: 32px 20px; }
+  .result-icon { font-size: 3rem; }
+  .result-title { font-size: 1.5rem; }
+  .result-score { font-size: 2.2rem; }
+  .result-cta { font-size: 1rem; }
 }
