@@ -108,17 +108,19 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME', default='blog_db'),
-        'USER': config('DATABASE_USER', default='blog_user'),
-        'PASSWORD': config('DATABASE_PASSWORD', default=''),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
         'HOST': config('DATABASE_HOST', default='localhost'),
         'PORT': config('DATABASE_PORT', default='5432'),
     }
 }
+
+
+
 
 '''
 SQLite c'est un fichier local sur ta machine. En production sur Railway, ce fichier n'existe pas 
