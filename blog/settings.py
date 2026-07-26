@@ -114,6 +114,13 @@ DATABASES = {
     )
 }
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+    )
+}
+
 '''
 SQLite c'est un fichier local sur ta machine. En production sur Railway, ce fichier n'existe pas 
 — Railway te donne une vraie base PostgreSQL accessible via une URL.
