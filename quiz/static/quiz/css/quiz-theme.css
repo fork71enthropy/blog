@@ -164,12 +164,6 @@ body.quiz-theme {
     box-sizing: border-box;
   }
 
-  .quiz-question {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 
   /* Typographie plus lisible sur mobile */
   .quiz-title { font-size: 1.3rem; margin-bottom: 20px; }
