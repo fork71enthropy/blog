@@ -6,3 +6,4 @@ db.sqlite3
 staticfiles/
 data_backup.json
 db.sqlite3*
+*backup*.json
