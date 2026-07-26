@@ -1,5 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
+{% block extra_head %}
 <link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
+{% endblock %}
+{% block content %}
 <script>document.body.classList.add('quiz-theme');</script>
 
 <div class="qz-card">
@@ -14,4 +18,4 @@
         <p class="empty-state">Aucun quiz disponible pour le moment.</p>
     {% endif %}
 </div>
-
+{% endblock %}

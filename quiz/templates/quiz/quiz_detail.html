@@ -1,5 +1,9 @@
+{% extends "base.html" %}
 {% load static %}
+{% block extra_head %}
 <link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
+{% endblock %}
+{% block content %}
 
 <script>document.body.classList.add('quiz-theme');</script>
 
@@ -35,8 +39,6 @@
         </div>
     </form>
 </div>
-
-
 
 <script>
 const questions = document.querySelectorAll(".quiz-question");
@@ -150,4 +152,4 @@ prevBtn.addEventListener("click", () => {
 
 showQuestion(current);
 </script>
-
+{% endblock %}
