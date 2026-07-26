@@ -11,7 +11,7 @@
     {% if quizzes %}
         <ul class="quiz-list">
             {% for quiz in quizzes %}
-                <li class="quiz-list-item"><a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.post }}</a></li>
+                <li class="quiz-list-item"><a href="{% url 'quiz_detail' quiz.id %}">{{ quiz.post.title_post }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
