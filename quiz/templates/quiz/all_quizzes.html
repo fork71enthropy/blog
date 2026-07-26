@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+
 {% load static %}
 <link rel="stylesheet" href="{% static 'quiz/css/quiz-theme.css' %}">
 <script>document.body.classList.add('quiz-theme');</script>
@@ -14,3 +16,5 @@
         <p class="empty-state">Aucun quiz disponible pour le moment.</p>
     {% endif %}
 </div>
+
+{% endblock %}
