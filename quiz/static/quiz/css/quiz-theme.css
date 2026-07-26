@@ -145,9 +145,10 @@ body.quiz-theme {
 
 @media (max-width: 600px) {
   /* Expérience plein écran sur mobile */
-  body.quiz-theme {
+  main {
     display: flex;
     flex-direction: column;
+    padding: 0;
   }
 
   .qz-card {
