@@ -8,7 +8,7 @@
 <script>document.body.classList.add('quiz-theme');</script>
 
 <div class="qz-card quiz-wrapper">
-    <p class="quiz-title">{{ quiz.post }}</p>
+    <p class="quiz-title">{{ quiz.post.title_post }}</p>
     <form method="post" id="quiz-form">
         {% csrf_token %}
         <div class="quiz-meta-row">
