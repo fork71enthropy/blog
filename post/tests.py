@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here, TODO : write unitests cases
-
+# TODO : delete this useless file and create a real directory for the test of all those files
 
 
 
