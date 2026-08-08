@@ -7,5 +7,3 @@ staticfiles/
 data_backup.json
 db.sqlite3*
 *backup*.json
-blog/settings.py
-blog/urls.py
