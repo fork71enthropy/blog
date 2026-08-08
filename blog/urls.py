@@ -26,3 +26,5 @@ urlpatterns = [
     path('comment/',include('comment.urls')),
     path('quiz/', include('quiz.urls')),
 ]
+
+# Damn, ca craint ! 
