@@ -20,4 +20,4 @@ Python — pour filtrer et afficher les résultats
 ```
 ```bash
 pip freeze > requirements.txt
-```
+```mqsldkfslmfksjslmkqjflmskd
