@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.environ.get('DEBUG', 'False') == 'True' Putain la honte
 DEBUG = False
-ADMIN_URL = config('ADMIN_URL')
+ADMIN_URL = config('ADMIN_URL', default='Tuneseraspasadmindemonsitegrosclebard123409871738475793579@@~~##/')
 ALLOWED_HOSTS = [
     'web-production-56b64.up.railway.app',
     'opus-symmetry.fr',
