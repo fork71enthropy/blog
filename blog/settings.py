@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get('DEBUG', 'False') == 'True' Putain la honte
-DEBUG = False
+#DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 ADMIN_URL = config('ADMIN_URL', default='Tuneseraspasadmindemonsitegrosclebard123409871738475793579@@#/')
 ALLOWED_HOSTS = [
     'web-production-56b64.up.railway.app',
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'comment',
     'api',
     'quiz',
+    'anymail',
 ]
 
 
@@ -110,6 +111,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
         conn_max_age=600,
     )
 }
@@ -179,13 +181,19 @@ AUTH_USER_MODEL = 'internaute.Internaute'
 # + les credentials SMTP (host, port, user, password)
 # On remplacera par cette ligne lorsqu'on passera en production 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.resend.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'resend'  # toujours "resend", pas ton email
+# E-mails via l'API HTTPS de Resend (le SMTP sortant est bloqué sur Railway Hobby)
+EMAIL_BACKEND = config(
+    'EMAIL_BACKEND',
+    default='anymail.backends.resend.EmailBackend',
+)
+ANYMAIL = {
+    'RESEND_API_KEY': os.environ.get('RESEND_API_KEY'),
+}
 DEFAULT_FROM_EMAIL = 'noreply@opus-symmetry.fr'
-EMAIL_HOST_PASSWORD = os.environ.get('RESEND_API_KEY')
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+# Filet de sécurité : jamais plus de 10 s d'attente sur un envoi
+EMAIL_TIMEOUT = 10
 
 # settings.py
 SITE_URL = "https://opus-symmetry.fr"

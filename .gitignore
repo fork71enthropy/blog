@@ -7,3 +7,6 @@ staticfiles/
 data_backup.json
 db.sqlite3*
 *backup*.json
+*.sql
+*.dump
+*.txt
