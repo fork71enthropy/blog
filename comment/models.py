@@ -21,6 +21,7 @@ class Liker_com(models.Model):
 
     class Meta:
         unique_together = ('internaute', 'comment')
+        # Autre model à tester plus tard ! 
     
 
 
